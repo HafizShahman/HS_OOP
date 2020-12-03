@@ -1,18 +1,21 @@
 package com.shahman;
 
-import javax.swing.JOptionPane;
+
 import java.util.Scanner;
 
 public class Display {
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        String name = null, address = null, noPhone = null, custID = null;
-        double pprice = 0;
+        String loop;
+        PreferredCustomer cust;
+        do {
+
+            Scanner scan = new Scanner(System.in);
+            String name, address, noPhone, custID;
+            double pprice = 0;
 
 
-        try {
-            System.out.println("Please Enter Your Detail");
+            System.out.println("\nPlease Enter Your Detail");
             System.out.print("Name : ");
             name = scan.nextLine();
 
@@ -25,25 +28,25 @@ public class Display {
             System.out.print("Customer ID : ");
             custID = scan.nextLine();
 
-            System.out.println("\nPlease Enter Your Total Purchase Price");
-            System.out.print("Price : ");
-            pprice = scan.nextDouble();
+            try {
 
-            PreferredCustomer cust = new PreferredCustomer(name, address, noPhone, custID, pprice);
+                System.out.println("\nPlease Enter Your Total Purchase Price");
+                System.out.print("Price : RM");
+                pprice = scan.nextDouble();
+
+            } catch (Exception E) {
+                System.out.println("Your Enter Wrong Data");
+                main(args);
+            }
+            cust = new PreferredCustomer(name, address, noPhone, custID, pprice);
+            System.out.println("Result");
             cust.DCustomer();
             cust.DPreCust();
+            System.out.print("\nOther Input? (Y/N) : ");
+            loop = scan.next();
 
-
-        } catch (Exception E) {
-
-            System.out.println("Your Enter Wrong Data");
-            main(args);
-        } finally {
-
-        }
-
+        } while (loop.equals("Y") || loop.equals("y"));
+        System.out.println("Have A Good Day 😉😉");
     }
-
-
-
 }
+

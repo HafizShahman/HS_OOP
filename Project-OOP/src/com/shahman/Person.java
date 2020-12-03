@@ -1,5 +1,9 @@
 package com.shahman;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+import java.util.Currency;
+
 public class Person {
 
     String PName;
@@ -32,7 +36,7 @@ class Customer extends Person {
     }
 
     public void DCustomer() {
-        System.out.println("Name : " + PName.toUpperCase() + "\nAddress : " + PAddress.toUpperCase()
+        System.out.println("\nName : " + PName.toUpperCase() + "\nAddress : " + PAddress.toUpperCase()
                 + "\nPhone No : " + PNoPhone.toUpperCase() + "\nCustomer ID : " + CustID.toUpperCase());
     }
 }
@@ -49,7 +53,8 @@ class PreferredCustomer extends Customer {
     }
 
     public void DPreCust() {
-        double totalPrice=0, discount=0;
+        NumberFormat defaultFormat = NumberFormat.getCurrencyInstance();
+        double totalPrice = 0, discount = 0;
         if (price < 500) {
             totalPrice = price;
 
@@ -70,8 +75,7 @@ class PreferredCustomer extends Customer {
             totalPrice = price - discount;
         }
 
-
-        System.out.println("Discount : RM" + discount
-                + "\nPrice after discount : RM" + totalPrice);
+        System.out.println("Discount : RM" + defaultFormat.format(discount)
+                + "\nPrice after discount : RM" + defaultFormat.format(totalPrice));
     }
 }
